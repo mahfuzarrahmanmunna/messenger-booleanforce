@@ -1,6 +1,6 @@
 // src/config/database.ts
 import { MongoClient, Db, ServerApiVersion } from 'mongodb';
-import { logger } from '../utils/logger';
+import { logger } from '../utils/logger.js';
 
 let client: MongoClient;
 let db: Db;

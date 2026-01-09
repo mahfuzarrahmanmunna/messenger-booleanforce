@@ -1,7 +1,7 @@
 // src/controllers/userController.ts
-import { Request, Response, NextFunction } from 'express';
-import { UserService } from '../services/userService';
-import { logger } from '../utils/logger';
+import type { Request, Response, NextFunction } from 'express';
+import { UserService } from '../services/userService.js';
+import { logger } from '../utils/logger.js';
 
 const userService = new UserService();
 
@@ -22,7 +22,7 @@ export const getUserController = {
 
   async getUserById(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const { id } = req.params as { id: string };
       const user = await userService.getUserById(id);
       
       if (!user) {
