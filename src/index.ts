@@ -58,7 +58,6 @@
 
 
 
-
 // src/index.ts
 import express from 'express';
 import cors from 'cors';
@@ -117,6 +116,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ success: false, message: 'Something went wrong!' });
 });
 
+// app.use()
 
 // Root route
 app.get('/', (req, res) => {
