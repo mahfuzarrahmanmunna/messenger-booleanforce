@@ -1,10 +1,7 @@
 import { StateGraph, END , Annotation, START} from "@langchain/langgraph";
 import { llmNode } from "./nodes/llmNodes.js";
+import { toolNode } from "./nodes/toolNode.js";
 import { StateAnnotation, type AgentState } from "./agentstate.js";
-import { ToolNode } from "@langchain/langgraph/prebuilt";
-import { tools } from "./tools.js";
-
-const toolNode = new ToolNode(tools);
 
 const graph = new StateGraph(StateAnnotation)
   .addNode("llm", llmNode)
@@ -13,7 +10,7 @@ const graph = new StateGraph(StateAnnotation)
   .addEdge(START, "llm")
   
   .addConditionalEdges("llm", (state) =>
-    (state.toolCall.length>0) ? "tool" : END
+    state.toolCall ? "tool" : END
   )
   .addEdge("tool", "llm")
   .compile();
