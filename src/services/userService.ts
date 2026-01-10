@@ -1,5 +1,5 @@
 // src/services/userService.ts
-import { getDatabase } from '../config/database';
+import { getDatabase } from '../config/database.js';
 import { ObjectId } from 'mongodb';
 
 export class UserService {

@@ -62,7 +62,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import util from 'node:util';
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
+import ClientChatBotRouter from './routes/clientChatBot.js';
+// import EmployeeChatBotRouter from './routes/employeeChatBot.js';
 
 dotenv.config();
 const app = express();
@@ -116,7 +119,8 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ success: false, message: 'Something went wrong!' });
 });
 
-// app.use()
+app.use('/chatbot/client', ClientChatBotRouter);
+// app.use('/chatbot/employee', EmployeeChatBotRouter);
 
 // Root route
 app.get('/', (req, res) => {

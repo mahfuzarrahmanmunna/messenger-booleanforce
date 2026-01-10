@@ -1,5 +1,5 @@
 {
   "watch": ["src"],
   "ext": "ts,json",
-  "exec": "node --loader ts-node/esm src/index.ts"
+  "exec": "node --loader ts-node/esm --trace-uncaught --trace-warnings ./src/index.ts"
 }

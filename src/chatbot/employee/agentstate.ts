@@ -1,4 +1,4 @@
-import { AIMessage, BaseMessage, ToolMessage } from "@langchain/core/messages";
+import { BaseMessage } from "@langchain/core/messages";
 import { Annotation} from "@langchain/langgraph";
 
 // 1. Define your state with Annotation.Root
@@ -7,17 +7,16 @@ export const StateAnnotation = Annotation.Root({
     value: (prev, next) => prev.concat(next),
     default: () => [],
   }),
-  final_output: Annotation<string | AIMessage | ToolMessage | null>({
-    value: (_prev, next) => next,
+  final_output: Annotation<string | null>({
+    value: (_prev, next) => next ,
     default: () => null,
   }),
   toolCall: Annotation<{
     tool: string;
-    args: Record<string, unknown>;
-    tool_call_id: string;
-  }[]>({
+    args: any;
+  } | null>({
     value: (_prev, next) => next,
-    default: () => [],
+    default: () => null,
   }),
 });
 
